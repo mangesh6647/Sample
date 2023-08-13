@@ -4,7 +4,17 @@ import axios from 'axios';
 import { Add } from '@mui/icons-material';
 import { successToaster } from '../../utils/toaster';
 
-const Dashboard = () => {
+interface Suggestion {
+    package: {
+        name: string;
+    };
+}
+
+interface Package {
+    packageName: string;
+    description: string;
+}
+const Dashboard: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [description, setDescription] = useState('');
@@ -19,7 +29,7 @@ const Dashboard = () => {
         const delay = setTimeout(async () => {
             try {
                 const response = await axios.get(`https://api.npms.io/v2/search/suggestions?q=${searchTerm}`);
-                setSuggestions(response.data.map((suggestion: any) => suggestion.package.name));
+                setSuggestions(response.data.map((suggestion: Suggestion) => suggestion.package.name));
             } catch (error) {
                 console.error('Error fetching suggestions:', error);
             }
@@ -36,7 +46,7 @@ const Dashboard = () => {
              */
             setIsItemAdded(
                 JSON.parse(localStorage.getItem('favorites') || '[]').some(
-                    (item: any) => item.packageName === value
+                    (item: Package) => item.packageName === value
                 )
             );
         } catch (error) {
@@ -44,7 +54,7 @@ const Dashboard = () => {
         }
     };
 
-    const handleSubmit = async (event: any) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const favoriteItem = {
             packageName: searchTerm,
