@@ -5,6 +5,7 @@ import NavBar from './components/layouts/NavBar';
 import Landing from './components/layouts/Landing';
 import Dashboard from './components/dashboard/Dashboard';
 import { ToastContainer } from 'react-toastify';
+import Favourites from './components/view-favourites/Favourites';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/favourites' element={<Favourites />} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

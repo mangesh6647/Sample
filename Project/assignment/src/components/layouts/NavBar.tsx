@@ -17,9 +17,11 @@ const NavBar = () => {
                     <Link to='/'>Favourite NPM Packages</Link>
                 </Typography>
                 {isDashboardPage && (
-                    <Button color="inherit" aria-label="View Favorites">
-                        View Favorites <FavoriteIcon />
-                    </Button>
+                    <Link to='/favourites'>
+                        <Button color="inherit" aria-label="View Favorites">
+                            View Favorites <FavoriteIcon />
+                        </Button>
+                    </Link>
                 )}
             </Toolbar>
 
