@@ -78,6 +78,7 @@ const Dashboard = () => {
                             <p className="text-red-500">Item already added to favorites</p>
                         )}
                     </div>}
+                    value={searchTerm}
                     onInputChange={(event, value) => {
                         setSearchTerm(value);
                         setIsItemAdded(false);
